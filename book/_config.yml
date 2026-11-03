@@ -1,0 +1,19 @@
+title: "Entregable 1 · Series de tiempo + texto"
+author: "Fabian José Manrique Morelos"
+logo: ""
+execute:
+  execute_notebooks: force
+  timeout: 1800
+  allow_errors: false
+launch_buttons: {}
+repository:
+  url: https://github.com/Fabian-11037/DeepLearningProject
+  path_to_book: book
+html:
+  use_issues_button: false
+  use_repository_button: true
+sphinx:
+  config:
+    language: es
+    html_js_files: []
+    nb_merge_streams: true

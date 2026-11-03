@@ -1,0 +1,11 @@
+format: jb-book
+root: 00_resumen
+chapters:
+  - file: 01_problema_dataset
+  - file: 02_eda
+  - file: 03_literatura
+  - file: 04_diseno_piloto
+  - file: 05_modelos_base
+  - file: 06_benchmark_baseline
+  - file: 07_discusion
+  - file: 08_reproducibilidad

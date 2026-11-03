@@ -1,0 +1,561 @@
+{
+ "MLP": {
+  "space_size": 144,
+  "trials": [
+   {
+    "cfg": {
+     "hidden": 64,
+     "layers": 2,
+     "dropout": 0.1,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 0.9990227478853483,
+    "epochs": 27,
+    "n_params": 6668,
+    "time_s": 0.6221802234649658
+   },
+   {
+    "cfg": {
+     "hidden": 128,
+     "layers": 1,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 32
+    },
+    "val_MASE": 0.9771074402029368,
+    "epochs": 27,
+    "n_params": 5004,
+    "time_s": 1.0764923095703125
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "layers": 1,
+     "dropout": 0.0,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 0.9970359842079596,
+    "epochs": 36,
+    "n_params": 1260,
+    "time_s": 0.6281023025512695
+   },
+   {
+    "cfg": {
+     "hidden": 64,
+     "layers": 1,
+     "dropout": 0.2,
+     "lr": 0.001,
+     "weight_decay": 0.0,
+     "batch": 32
+    },
+    "val_MASE": 0.9811384590309352,
+    "epochs": 29,
+    "n_params": 2508,
+    "time_s": 0.8926205635070801
+   },
+   {
+    "cfg": {
+     "hidden": 128,
+     "layers": 2,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 1.0102333451255523,
+    "epochs": 22,
+    "n_params": 21516,
+    "time_s": 0.6802570819854736
+   },
+   {
+    "cfg": {
+     "hidden": 128,
+     "layers": 1,
+     "dropout": 0.2,
+     "lr": 0.001,
+     "weight_decay": 0.0,
+     "batch": 64
+    },
+    "val_MASE": 0.9888943007376255,
+    "epochs": 29,
+    "n_params": 5004,
+    "time_s": 0.6012814044952393
+   },
+   {
+    "cfg": {
+     "hidden": 64,
+     "layers": 1,
+     "dropout": 0.0,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 32
+    },
+    "val_MASE": 0.9912581694690132,
+    "epochs": 31,
+    "n_params": 2508,
+    "time_s": 1.0209004878997803
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "layers": 1,
+     "dropout": 0.1,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 0.9989096274171144,
+    "epochs": 32,
+    "n_params": 1260,
+    "time_s": 0.5811665058135986
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "layers": 1,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 0.9791741666754717,
+    "epochs": 23,
+    "n_params": 1260,
+    "time_s": 0.40535521507263184
+   },
+   {
+    "cfg": {
+     "hidden": 64,
+     "layers": 1,
+     "dropout": 0.0,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 0.9855542807083225,
+    "epochs": 32,
+    "n_params": 2508,
+    "time_s": 0.5136110782623291
+   },
+   {
+    "cfg": {
+     "hidden": 128,
+     "layers": 2,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0,
+     "batch": 64
+    },
+    "val_MASE": 1.0022756967974964,
+    "epochs": 22,
+    "n_params": 21516,
+    "time_s": 0.7309865951538086
+   },
+   {
+    "cfg": {
+     "hidden": 64,
+     "layers": 2,
+     "dropout": 0.2,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 32
+    },
+    "val_MASE": 0.9958674290410993,
+    "epochs": 30,
+    "n_params": 6668,
+    "time_s": 1.313962697982788
+   }
+  ],
+  "best": {
+   "hidden": 128,
+   "layers": 1,
+   "dropout": 0.2,
+   "lr": 0.003,
+   "weight_decay": 0.0001,
+   "batch": 32
+  },
+  "best_val_MASE": 0.9771074402029368
+ },
+ "LSTM": {
+  "space_size": 144,
+  "trials": [
+   {
+    "cfg": {
+     "hidden": 32,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 32,
+     "clip": 1.0
+    },
+    "val_MASE": 1.0496840714992242,
+    "epochs": 37,
+    "n_params": 4876,
+    "time_s": 3.648672103881836
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "dropout": 0.1,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 64,
+     "clip": 1.0
+    },
+    "val_MASE": 1.0024640410503576,
+    "epochs": 57,
+    "n_params": 4876,
+    "time_s": 3.5486068725585938
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "dropout": 0.1,
+     "lr": 0.001,
+     "weight_decay": 0.0,
+     "batch": 64,
+     "clip": 0.5
+    },
+    "val_MASE": 1.0405957885315764,
+    "epochs": 48,
+    "n_params": 4876,
+    "time_s": 2.90376877784729
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0,
+     "batch": 64,
+     "clip": 0.5
+    },
+    "val_MASE": 1.0624844731101637,
+    "epochs": 26,
+    "n_params": 4876,
+    "time_s": 1.6239502429962158
+   },
+   {
+    "cfg": {
+     "hidden": 64,
+     "dropout": 0.1,
+     "lr": 0.003,
+     "weight_decay": 0.0,
+     "batch": 64,
+     "clip": 0.5
+    },
+    "val_MASE": 0.9793468028303393,
+    "epochs": 36,
+    "n_params": 17932,
+    "time_s": 3.9236345291137695
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "dropout": 0.2,
+     "lr": 0.001,
+     "weight_decay": 0.0,
+     "batch": 64,
+     "clip": 0.5
+    },
+    "val_MASE": 1.0056670516160484,
+    "epochs": 52,
+    "n_params": 4876,
+    "time_s": 3.253704071044922
+   },
+   {
+    "cfg": {
+     "hidden": 16,
+     "dropout": 0.1,
+     "lr": 0.001,
+     "weight_decay": 0.0,
+     "batch": 32,
+     "clip": 0.5
+    },
+    "val_MASE": 0.9464326581141638,
+    "epochs": 105,
+    "n_params": 1420,
+    "time_s": 8.20024585723877
+   },
+   {
+    "cfg": {
+     "hidden": 64,
+     "dropout": 0.1,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 32,
+     "clip": 0.5
+    },
+    "val_MASE": 1.0172611258007698,
+    "epochs": 42,
+    "n_params": 17932,
+    "time_s": 6.114367246627808
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "dropout": 0.1,
+     "lr": 0.001,
+     "weight_decay": 0.0,
+     "batch": 32,
+     "clip": 0.5
+    },
+    "val_MASE": 0.9872548408731819,
+    "epochs": 46,
+    "n_params": 4876,
+    "time_s": 4.402446746826172
+   },
+   {
+    "cfg": {
+     "hidden": 32,
+     "dropout": 0.2,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 32,
+     "clip": 1.0
+    },
+    "val_MASE": 0.9969656873057873,
+    "epochs": 57,
+    "n_params": 4876,
+    "time_s": 6.002636909484863
+   },
+   {
+    "cfg": {
+     "hidden": 16,
+     "dropout": 0.2,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 32,
+     "clip": 1.0
+    },
+    "val_MASE": 0.9548169602552076,
+    "epochs": 140,
+    "n_params": 1420,
+    "time_s": 10.889529466629028
+   },
+   {
+    "cfg": {
+     "hidden": 64,
+     "dropout": 0.0,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 64,
+     "clip": 1.0
+    },
+    "val_MASE": 1.0280439444827187,
+    "epochs": 47,
+    "n_params": 17932,
+    "time_s": 4.694175958633423
+   }
+  ],
+  "best": {
+   "hidden": 16,
+   "dropout": 0.1,
+   "lr": 0.001,
+   "weight_decay": 0.0,
+   "batch": 32,
+   "clip": 0.5
+  },
+  "best_val_MASE": 0.9464326581141638
+ },
+ "CNN1D": {
+  "space_size": 288,
+  "trials": [
+   {
+    "cfg": {
+     "channels": 64,
+     "kernel": 5,
+     "convs": 2,
+     "dropout": 0.1,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 32
+    },
+    "val_MASE": 0.9964850793585901,
+    "epochs": 24,
+    "n_params": 40908,
+    "time_s": 3.4619996547698975
+   },
+   {
+    "cfg": {
+     "channels": 64,
+     "kernel": 3,
+     "convs": 2,
+     "dropout": 0.1,
+     "lr": 0.003,
+     "weight_decay": 0.0,
+     "batch": 64
+    },
+    "val_MASE": 0.9788019801513718,
+    "epochs": 22,
+    "n_params": 32588,
+    "time_s": 2.225794792175293
+   },
+   {
+    "cfg": {
+     "channels": 32,
+     "kernel": 3,
+     "convs": 2,
+     "dropout": 0.2,
+     "lr": 0.001,
+     "weight_decay": 0.0,
+     "batch": 32
+    },
+    "val_MASE": 0.9869337654112021,
+    "epochs": 27,
+    "n_params": 13228,
+    "time_s": 2.668398380279541
+   },
+   {
+    "cfg": {
+     "channels": 32,
+     "kernel": 3,
+     "convs": 2,
+     "dropout": 0.1,
+     "lr": 0.001,
+     "weight_decay": 0.0,
+     "batch": 64
+    },
+    "val_MASE": 0.9736383646277508,
+    "epochs": 29,
+    "n_params": 13228,
+    "time_s": 1.863401174545288
+   },
+   {
+    "cfg": {
+     "channels": 16,
+     "kernel": 5,
+     "convs": 2,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0,
+     "batch": 64
+    },
+    "val_MASE": 0.9930662952602364,
+    "epochs": 29,
+    "n_params": 6396,
+    "time_s": 1.456991195678711
+   },
+   {
+    "cfg": {
+     "channels": 32,
+     "kernel": 3,
+     "convs": 1,
+     "dropout": 0.0,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 32
+    },
+    "val_MASE": 0.965189056777871,
+    "epochs": 29,
+    "n_params": 10124,
+    "time_s": 1.4402358531951904
+   },
+   {
+    "cfg": {
+     "channels": 16,
+     "kernel": 3,
+     "convs": 2,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 32
+    },
+    "val_MASE": 0.9767871158061262,
+    "epochs": 27,
+    "n_params": 5852,
+    "time_s": 2.3183066844940186
+   },
+   {
+    "cfg": {
+     "channels": 64,
+     "kernel": 5,
+     "convs": 2,
+     "dropout": 0.2,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 0.9877939411472659,
+    "epochs": 24,
+    "n_params": 40908,
+    "time_s": 2.895212173461914
+   },
+   {
+    "cfg": {
+     "channels": 16,
+     "kernel": 3,
+     "convs": 1,
+     "dropout": 0.0,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 0.9734013176241091,
+    "epochs": 93,
+    "n_params": 5068,
+    "time_s": 2.718109607696533
+   },
+   {
+    "cfg": {
+     "channels": 32,
+     "kernel": 5,
+     "convs": 2,
+     "dropout": 0.0,
+     "lr": 0.001,
+     "weight_decay": 0.0001,
+     "batch": 32
+    },
+    "val_MASE": 0.9803412843902616,
+    "epochs": 25,
+    "n_params": 15340,
+    "time_s": 2.313699960708618
+   },
+   {
+    "cfg": {
+     "channels": 32,
+     "kernel": 3,
+     "convs": 2,
+     "dropout": 0.0,
+     "lr": 0.003,
+     "weight_decay": 0.0,
+     "batch": 64
+    },
+    "val_MASE": 0.9739840679245101,
+    "epochs": 22,
+    "n_params": 13228,
+    "time_s": 1.173330545425415
+   },
+   {
+    "cfg": {
+     "channels": 16,
+     "kernel": 5,
+     "convs": 1,
+     "dropout": 0.0,
+     "lr": 0.003,
+     "weight_decay": 0.0001,
+     "batch": 64
+    },
+    "val_MASE": 1.0135542756863856,
+    "epochs": 36,
+    "n_params": 5100,
+    "time_s": 0.9841411113739014
+   }
+  ],
+  "best": {
+   "channels": 32,
+   "kernel": 3,
+   "convs": 1,
+   "dropout": 0.0,
+   "lr": 0.003,
+   "weight_decay": 0.0001,
+   "batch": 32
+  },
+  "best_val_MASE": 0.965189056777871
+ }
+}
