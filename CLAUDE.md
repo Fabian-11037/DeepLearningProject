@@ -76,6 +76,8 @@ Gotchas: en el contenedor de nube, PyTorch de PyPI exige instalar también las l
 4. Pronóstico probabilístico/conformal condicionado por texto.
 No basta apilar/promediar salidas ni «añadir una regresión»: el E3 exige regla de fusión o mecanismo propio, hipótesis falsable y ablación.
 
+Fichas verificadas de FNSPID, NSW-EPNews y MoTime (tamaño, fechas, licencia): `docs/fichas_datasets.md`.
+
 **Datasets adicionales para E3** (misma tarea y métrica, naturaleza distinta, ≥2 ejes de diferencia, fijados antes de ver resultados): otros dominios de Time-MMD (Environment diario, Agriculture/Economy/Health mensual o semanal, etc.), NSW-EPNews, subconjunto de FNSPID o FX/petróleo (verificar licencia). Fijar la tarea como pronóstico de valor (no clasificación).
 
 ## 8. Antecedentes de la revisión de literatura
