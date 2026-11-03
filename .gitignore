@@ -1,0 +1,6 @@
+data/raw/
+__pycache__/
+*.pyc
+book/_build/
+.ipynb_checkpoints/
+results/models/
