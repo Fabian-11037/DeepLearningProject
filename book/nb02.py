@@ -153,21 +153,5 @@ pd.DataFrame({n: summarize(va["truth"], p, sc) for n, p in [("Persistencia", per
 - **Riesgos:** si los modelos de DL no superan claramente a Ridge, su complejidad no se justifica con esta serie univariada."""),
 ("md", """## 2.11 Sesgos y atajos
 Sin clases ni subpoblaciones; los sesgos relevantes son **temporales** (Secciones 2.3 y 2.9). Atajo posible: el nivel absoluto del precio (el modelo podría memorizar niveles de un régimen); se mitiga con la ventana relativa y la escala fijada en entrenamiento."""),
-("md", """## 2.12 EDA preliminar de la modalidad textual (insumo de E2/E3)"""),
-("code", """rep = pd.read_csv(ROOT / "data/raw/textual/Energy/Energy_report.csv"); sea = pd.read_csv(ROOT / "data/raw/textual/Energy/Energy_search.csv")
-for d in (rep, sea): d["start_date"] = pd.to_datetime(d["start_date"]); d["end_date"] = pd.to_datetime(d["end_date"])
-resumen = pd.DataFrame({"report": {"documentos": len(rep), "desde": rep.start_date.min().date(), "hasta": rep.start_date.max().date(),
-   "longitud mediana (caracteres) de `fact`": int(rep.fact.str.len().median()), "duplicados exactos de `fact`": int(rep.fact.duplicated().sum()),
-   "% semanas del dataset con >=1 informe": round(100 * y.index.isin(rep.start_date.dt.to_period('W').dt.start_time).mean(), 1)},
-   "search": {"documentos": len(sea), "desde": sea.start_date.min().date(), "hasta": sea.start_date.max().date(),
-   "longitud mediana (caracteres) de `fact`": int(sea.fact.str.len().median()), "duplicados exactos de `fact`": int(sea.fact.duplicated().sum()),
-   "% semanas del dataset con >=1 informe": round(100 * y.index.isin(sea.start_date.dt.to_period('W').dt.start_time).mean(), 1)}})
-display(resumen)
-print("Columnas:", list(rep.columns)); print("\\nEjemplo de `preds`:", rep.iloc[0]["preds"][:260])"""),
-("md", """**Hallazgos para E2/E3 (no afectan los baselines del E1):**
-
-- El texto cubre **solo una parte del periodo** (informes desde 2011) y una fracción de las semanas: un modelo multimodal verá semanas sin texto; hay que decidir cómo tratarlas (máscara/relleno causal).
-- Cada registro tiene `fact` (hechos) y `preds` (texto de **pronóstico**). Según el README de Time-MMD, `preds` son proyecciones narrativas; **hay que auditar** si fueron redactadas con información posterior a `start_date` (riesgo de fuga). Esta auditoría es obligatoria en el E2 (Sección 10 de sus pautas).
-- Alineación: el texto se asocia por `[start_date, end_date]`; solo se debe usar texto con `end_date` anterior al origen del pronóstico."""),
 ]
 write("02_eda.ipynb", cells)

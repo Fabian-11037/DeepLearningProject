@@ -33,7 +33,5 @@ ax[0].set_ylabel("MSE escalado"); ax[0].legend(); plt.tight_layout(); plt.show()
 pd.Series({"Python": platform.python_version(), "PyTorch": torch.__version__.split("+")[0], "NumPy": np.__version__, "pandas": pd.__version__, "scikit-learn": sklearn.__version__,
            "SciPy": scipy.__version__, "statsmodels": statsmodels.__version__, "Hardware": "CPU (2 núcleos, 1 hilo por entrenamiento), sin GPU", "Determinismo": "estricto (torch.use_deterministic_algorithms(True))"}).to_frame("versión")"""),
 ("code", """runs.groupby("model")[["epochs", "train_time_s", "infer_ms_per_window", "n_params"]].agg(["mean", "std"]).round(3)"""),
-("md", """## 5.5 Pruebas unitarias de las salvaguardas
-`tests/test_pipeline.py` verifica: (i) que ninguna etiqueta de entrenamiento cae en validación o prueba, (ii) que el acceso a la prueba requiere el permiso explícito, (iii) que la escala se ajusta solo con entrenamiento, (iv) que la ventana es causal, (v) la reproducibilidad exacta con la misma semilla. Se ejecutan con `pytest -q`."""),
 ]
 write("05_modelos_base.ipynb", cells)

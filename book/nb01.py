@@ -37,5 +37,5 @@ cols"""),
 - **Unidad de observación:** una semana; **variable objetivo** `OT`: precio promedio semanal (USD/galón). Es una **medición instrumental/administrativa** (encuesta de precios), con ruido de medición pequeño frente a la variación del precio.
 - **Estructura de dependencia:** temporal (autocorrelación fuerte, no estacionaria en nivel). Esto obliga a una **partición cronológica estricta** y a que la inferencia estadística tenga en cuenta que los errores de pronóstico a horizonte $h$ están autocorrelacionados (MA($h-1$)), de ahí el uso de Diebold–Mariano con corrección HLN.
 - **Covariables numéricas:** las otras 9 columnas son precios regionales contemporáneos del mismo producto. **No se usan** en los baselines: están medidas en el mismo instante que el objetivo y mezclarlas sería casi una copia del objetivo, además de que su disponibilidad al momento del pronóstico no está garantizada (riesgo de fuga). Los baselines son **solo-serie**.
-- **Texto:** informes semanales (`Energy_report.csv`) y búsquedas (`Energy_search.csv`). No entran en el E1; su EDA preliminar está en el Cap. 2 (Sección 2.12) porque condiciona los E2 y E3.""")]
+- **Texto:** informes semanales (`Energy_report.csv`) y búsquedas (`Energy_search.csv`). No entran en el E1.""")]
 write("01_problema_dataset.ipynb", cells)
