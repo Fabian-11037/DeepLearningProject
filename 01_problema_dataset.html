@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Definición del problema y dataset &#8212; Entregable 1 · Series de tiempo + texto</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_problema_dataset';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="2. Análisis exploratorio de datos (EDA)" href="02_eda.html" />
+    <link rel="prev" title="Entregable 1 — Estado del arte, EDA y baselines de DL" href="00_resumen.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00_resumen.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 1 · Series de tiempo + texto</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_resumen.html">
+                    Entregable 1 — Estado del arte, EDA y baselines de DL
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Definición del problema y dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión del estado del arte y extracción de los tres modelos base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_diseno_piloto.html">4. Diseño experimental, búsqueda de hiperparámetros y estudio piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_modelos_base.html">5. Implementación de los tres modelos base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_baseline.html">6. Benchmark de los modelos base, definición del baseline e inferencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_discusion.html">7. Discusión crítica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Fabian-11037/DeepLearningProject" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_problema_dataset.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Definición del problema y dataset</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-formal">1.1 Definición formal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#justificacion-del-dataset">1.2 Justificación del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-tecnica">1.3 Descripción técnica</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="definicion-del-problema-y-dataset">
+<h1>1. Definición del problema y dataset<a class="headerlink" href="#definicion-del-problema-y-dataset" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"src"</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span> <span class="n">ROOT</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"src"</span><span class="p">))</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span><span class="o">,</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"figure.dpi"</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span> <span class="s2">"axes.grid"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"grid.alpha"</span><span class="p">:</span> <span class="mf">.25</span><span class="p">,</span> <span class="s2">"figure.figsize"</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)})</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsbase</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">C</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsbase.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_energy</span><span class="p">,</span> <span class="n">Windows</span><span class="p">,</span> <span class="n">sha256</span><span class="p">,</span> <span class="n">energy_path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="definicion-formal">
+<h2>1.1 Definición formal<a class="headerlink" href="#definicion-formal" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Tipo de problema (de los diez admitidos): 3. Series de tiempo.</strong> El pronóstico usa los rezagos del propio objetivo (ventana de entrada), por lo que, según la definición del enunciado, no es regresión temporal.</p></li>
+<li><p><strong>Espacio de entrada</strong> <span class="math notranslate nohighlight">\(\mathcal{X}=\mathbb{R}^{L}\)</span> con <span class="math notranslate nohighlight">\(L=26\)</span>: los últimos 26 valores de <span class="math notranslate nohighlight">\(\log y\)</span> <em>relativos al último</em> (<span class="math notranslate nohighlight">\(x_j=\log y_{t-L+1+j}-\log y_t\)</span>).</p></li>
+<li><p><strong>Espacio de salida</strong> <span class="math notranslate nohighlight">\(\mathcal{Y}=\mathbb{R}^{H}\)</span> con <span class="math notranslate nohighlight">\(H=12\)</span>: <span class="math notranslate nohighlight">\(y_h=\log(y_{t+h}/y_t)\)</span>, <span class="math notranslate nohighlight">\(h=1,\dots,12\)</span>. El pronóstico en nivel es <span class="math notranslate nohighlight">\(\hat y_{t+h}=y_t\,e^{\hat y_h}\)</span>.</p></li>
+<li><p><strong>Función objetivo</strong> <span class="math notranslate nohighlight">\(f:\mathcal{X}\to\mathcal{Y}\)</span>, estrategia <strong>multi-salida directa</strong>; pérdida <span class="math notranslate nohighlight">\(\mathcal{L}=\frac{1}{NH}\sum_{i,h}(y_{i,h}-f(x_i)_h)^2\)</span> sobre los valores escalados.</p></li>
+<li><p><strong>Pregunta de investigación:</strong> ¿qué error mínimo alcanzan un MLP, una LSTM y una CNN 1D al pronosticar el precio semanal de la gasolina a 1–12 semanas, y qué margen debe superar un modelo avanzado (multimodal con texto) para justificar su complejidad?</p></li>
+<li><p><strong>Hipótesis operativa:</strong> <span class="math notranslate nohighlight">\(H_0\)</span>: los tres modelos tienen igual MASE esperada; <span class="math notranslate nohighlight">\(H_1\)</span>: alguno difiere en más de <span class="math notranslate nohighlight">\(\delta\)</span>.</p></li>
+<li><p><strong>Métrica primaria:</strong> MASE<span class="math notranslate nohighlight">\(_{1:12}\)</span> (promedio de la MASE por horizonte; escala = MAE del ingenuo <span class="math notranslate nohighlight">\(h\)</span>-pasos en entrenamiento). <strong>Secundarias:</strong> RMSE, MAE, sMAPE, y los tres horizontes <span class="math notranslate nohighlight">\(h\in\{1,4,12\}\)</span>.</p></li>
+<li><p><strong>Margen de relevancia práctica:</strong> <span class="math notranslate nohighlight">\(\delta=3\,\%\)</span> de reducción relativa de la MASE respecto del mejor modelo base.</p></li>
+<li><p><strong>Unidad de independencia:</strong> el origen de pronóstico; las semillas se aparean por índice.</p></li>
+</ul>
+<p>Estas declaraciones están fechadas y versionadas en <code class="docutils literal notranslate"><span class="pre">PREREGISTRO.md</span></code>, y se heredan en los Entregables 2 y 3.</p>
+</section>
+<section id="justificacion-del-dataset">
+<h2>1.2 Justificación del dataset<a class="headerlink" href="#justificacion-del-dataset" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Relevancia aplicada:</strong> el precio de la gasolina es una serie con impacto económico, sensible a eventos (geopolítica, huracanes, decisiones de la OPEP) que se describen en texto; por eso es un banco natural para modelos que combinan serie y texto.</p></li>
+<li><p><strong>Procedencia:</strong> Time-MMD (Liu et al., 2024, arXiv:2406.08627) agrupa 9 dominios con series numéricas y texto alineado. En <em>Energy</em>, la serie es un precio semanal de gasolina minorista en EE. UU. y el texto son informes semanales y búsquedas (la fuente exacta de cada serie está en el Apéndice C del paper; <strong>pendiente de verificar y citar</strong>).</p></li>
+<li><p><strong>Uso previo en la literatura:</strong> es el benchmark de referencia de la línea multimodal que se revisa en el Cap. 3 (Time-MMD / MM-TSFlib y trabajos posteriores), lo que permite comparar resultados.</p></li>
+<li><p><strong>Licencia:</strong> el repositorio no declara una licencia de redistribución, por eso los datos <strong>no se versionan aquí</strong>; <code class="docutils literal notranslate"><span class="pre">scripts/get_data.py</span></code> los descarga de un commit fijo y verifica el hash.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">load_energy</span><span class="p">()</span>
+<span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="s2">"Observaciones"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="s2">"Inicio"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()),</span> <span class="s2">"Fin"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()),</span>
+ <span class="s2">"Frecuencia"</span><span class="p">:</span> <span class="s2">"semanal (lunes)"</span><span class="p">,</span> <span class="s2">"Variable objetivo"</span><span class="p">:</span> <span class="n">C</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span>
+ <span class="s2">"Columnas numéricas"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">"Archivo"</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">energy_path</span><span class="p">()</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">ROOT</span><span class="p">)),</span>
+ <span class="s2">"SHA-256"</span><span class="p">:</span> <span class="n">sha256</span><span class="p">(</span><span class="n">energy_path</span><span class="p">()),</span>
+ <span class="s2">"Commit Time-MMD"</span><span class="p">:</span> <span class="s2">"00281e2d86058286d5548b15a7670e8eda57ef62 (14-ene-2025)"</span><span class="p">}</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">info</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s2">"valor"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Observaciones</th>
+      <td>1622</td>
+    </tr>
+    <tr>
+      <th>Inicio</th>
+      <td>1993-04-05</td>
+    </tr>
+    <tr>
+      <th>Fin</th>
+      <td>2024-04-29</td>
+    </tr>
+    <tr>
+      <th>Frecuencia</th>
+      <td>semanal (lunes)</td>
+    </tr>
+    <tr>
+      <th>Variable objetivo</th>
+      <td>OT</td>
+    </tr>
+    <tr>
+      <th>Columnas numéricas</th>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>Archivo</th>
+      <td>data/raw/numerical/Energy/Energy.csv</td>
+    </tr>
+    <tr>
+      <th>SHA-256</th>
+      <td>94313cefb3459f04b58ec814da5d817a694e767cc52de0...</td>
+    </tr>
+    <tr>
+      <th>Commit Time-MMD</th>
+      <td>00281e2d86058286d5548b15a7670e8eda57ef62 (14-e...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"columna"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="s2">"tipo"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">"faltantes"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">})</span>
+<span class="n">cols</span><span class="p">[</span><span class="s2">"columna"</span><span class="p">]</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="s2">"columna"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\s+"</span><span class="p">,</span> <span class="s2">" "</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">cols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>columna</th>
+      <th>tipo</th>
+      <th>faltantes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>OT</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Weekly East Coast All Grades All Formulations ...</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Weekly New England (PADD 1A) All Grades All Fo...</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Weekly Central Atlantic (PADD 1B) All Grades A...</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Weekly Lower Atlantic (PADD 1C) All Grades All...</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Weekly Midwest All Grades All Formulations Ret...</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Weekly Gulf Coast All Grades All Formulations ...</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Weekly Rocky Mountain All Grades All Formulati...</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Weekly West Coast All Grades All Formulations ...</td>
+      <td>float64</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>start_date</td>
+      <td>str</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>end_date</td>
+      <td>str</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="descripcion-tecnica">
+<h2>1.3 Descripción técnica<a class="headerlink" href="#descripcion-tecnica" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Unidad de observación:</strong> una semana; <strong>variable objetivo</strong> <code class="docutils literal notranslate"><span class="pre">OT</span></code>: precio promedio semanal (USD/galón). Es una <strong>medición instrumental/administrativa</strong> (encuesta de precios), con ruido de medición pequeño frente a la variación del precio.</p></li>
+<li><p><strong>Estructura de dependencia:</strong> temporal (autocorrelación fuerte, no estacionaria en nivel). Esto obliga a una <strong>partición cronológica estricta</strong> y a que la inferencia estadística tenga en cuenta que los errores de pronóstico a horizonte <span class="math notranslate nohighlight">\(h\)</span> están autocorrelacionados (MA(<span class="math notranslate nohighlight">\(h-1\)</span>)), de ahí el uso de Diebold–Mariano con corrección HLN.</p></li>
+<li><p><strong>Covariables numéricas:</strong> las otras 9 columnas son precios regionales contemporáneos del mismo producto. <strong>No se usan</strong> en los baselines: están medidas en el mismo instante que el objetivo y mezclarlas sería casi una copia del objetivo, además de que su disponibilidad al momento del pronóstico no está garantizada (riesgo de fuga). Los baselines son <strong>solo-serie</strong>.</p></li>
+<li><p><strong>Texto:</strong> informes semanales (<code class="docutils literal notranslate"><span class="pre">Energy_report.csv</span></code>) y búsquedas (<code class="docutils literal notranslate"><span class="pre">Energy_search.csv</span></code>). No entran en el E1.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00_resumen.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Entregable 1 — Estado del arte, EDA y baselines de DL</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_eda.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">2. Análisis exploratorio de datos (EDA)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-formal">1.1 Definición formal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#justificacion-del-dataset">1.2 Justificación del dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-tecnica">1.3 Descripción técnica</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Fabian José Manrique Morelos
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

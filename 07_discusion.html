@@ -1,0 +1,639 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Discusión crítica &#8212; Entregable 1 · Series de tiempo + texto</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07_discusion';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="8. Reproducibilidad" href="08_reproducibilidad.html" />
+    <link rel="prev" title="6. Benchmark de los modelos base, definición del baseline e inferencia" href="06_benchmark_baseline.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="00_resumen.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Entregable 1 · Series de tiempo + texto</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_resumen.html">
+                    Entregable 1 — Estado del arte, EDA y baselines de DL para series de tiempo con texto
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_problema_dataset.html">1. Definición del problema y dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos (EDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_literatura.html">3. Revisión del estado del arte y extracción de los tres modelos base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_diseno_piloto.html">4. Diseño experimental, búsqueda de hiperparámetros y estudio piloto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_modelos_base.html">5. Implementación de los tres modelos base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_baseline.html">6. Benchmark de los modelos base, definición del baseline e inferencia</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Discusión crítica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_reproducibilidad.html">8. Reproducibilidad</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Fabian-11037/DeepLearningProject" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/07_discusion.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>7. Discusión crítica</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez">Amenazas a la validez</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">Limitaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-para-e2-y-e3">Recomendaciones para E2 y E3</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="discusion-critica">
+<h1>7. Discusión crítica<a class="headerlink" href="#discusion-critica" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"src"</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span> <span class="n">ROOT</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"src"</span><span class="p">))</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span><span class="o">,</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">display</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"figure.dpi"</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span> <span class="s2">"axes.grid"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"grid.alpha"</span><span class="p">:</span> <span class="mf">.25</span><span class="p">,</span> <span class="s2">"figure.figsize"</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)})</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsbase</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">C</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsbase.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_energy</span><span class="p">,</span> <span class="n">Windows</span><span class="p">,</span> <span class="n">sha256</span><span class="p">,</span> <span class="n">energy_path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsbase</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span> <span class="k">as</span> <span class="n">S</span>
+<span class="n">runs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"results/final_runs.csv"</span><span class="p">);</span> <span class="n">refs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"results/reference_models.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"model"</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"MLP"</span><span class="p">,</span> <span class="s2">"LSTM"</span><span class="p">,</span> <span class="s2">"CNN1D"</span><span class="p">];</span> <span class="n">P</span> <span class="o">=</span> <span class="s2">"test_MASE_1:12"</span><span class="p">;</span> <span class="n">mt</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"seed"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"model"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">P</span><span class="p">)[</span><span class="n">M</span><span class="p">]</span>
+<span class="n">mm</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">mean</span><span class="p">();</span> <span class="n">best</span> <span class="o">=</span> <span class="n">mm</span><span class="o">.</span><span class="n">idxmin</span><span class="p">();</span> <span class="n">pers</span> <span class="o">=</span> <span class="n">refs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Persistencia"</span><span class="p">];</span> <span class="n">rid</span> <span class="o">=</span> <span class="n">refs</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s2">"Ridge"</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">runs</span><span class="p">[</span><span class="n">runs</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">m</span><span class="p">][</span><span class="sa">f</span><span class="s2">"test_MASE_h</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">rb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"results/robustness_val.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"model"</span><span class="p">,</span> <span class="s2">"noise_k"</span><span class="p">])</span><span class="o">.</span><span class="n">val_MASE</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gap</span> <span class="o">=</span> <span class="p">{</span><span class="n">m</span><span class="p">:</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">runs</span><span class="p">[</span><span class="n">runs</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">m</span><span class="p">][</span><span class="s2">"val_MASE_1:12"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">runs</span><span class="p">[</span><span class="n">runs</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">train_MASE</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">runs</span><span class="p">[</span><span class="n">runs</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">train_MASE</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">M</span><span class="p">}</span>
+<span class="n">pv</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="p">:</span> <span class="n">S</span><span class="o">.</span><span class="n">paired_report</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">mt</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">"MLP"</span><span class="p">,</span> <span class="s2">"LSTM"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"MLP"</span><span class="p">,</span> <span class="s2">"CNN1D"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"LSTM"</span><span class="p">,</span> <span class="s2">"CNN1D"</span><span class="p">)]}</span>
+<span class="n">minp</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">holm</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="s2">"t_p"</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">pv</span><span class="o">.</span><span class="n">values</span><span class="p">()]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s1">'''### ¿Cuál modelo base funciona mejor y por qué?</span>
+<span class="s1">**</span><span class="si">{</span><span class="n">best</span><span class="si">}</span><span class="s1">** tiene la menor MASE₁:₁₂ de prueba (</span><span class="si">{</span><span class="n">mm</span><span class="p">[</span><span class="n">best</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">; MLP </span><span class="si">{</span><span class="n">mm</span><span class="p">[</span><span class="s1">'MLP'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, LSTM </span><span class="si">{</span><span class="n">mm</span><span class="p">[</span><span class="s1">'LSTM'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">), pero la diferencia con los otros es de </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">mm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">-</span><span class="n">mm</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="n">mm</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> % y **no es estadísticamente significativa** (p-valor t pareado más pequeño tras Holm = </span><span class="si">{</span><span class="n">minp</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">; Friedman p = 0.30). A horizonte h=1 el DM-HLN sí favorece a la CNN 1D frente al MLP (p ajustado ≈ 0.012); a h=4 y h=12 no hay diferencias. Una lectura plausible (a verificar) es que, a un paso, la CNN capta mejor los últimos retornos (autocorrelación corta, rezagos 1–3 significativos en el EDA), mientras que a 12 semanas todos convergen a un pronóstico cercano a la persistencia.</span>
+
+<span class="s1">### ¿Cuál generaliza mejor?</span>
+<span class="s1">La brecha entrenamiento→validación es </span><span class="si">{</span><span class="n">gap</span><span class="p">[</span><span class="s1">'CNN1D'</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> % (CNN1D), </span><span class="si">{</span><span class="n">gap</span><span class="p">[</span><span class="s1">'LSTM'</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> % (LSTM) y </span><span class="si">{</span><span class="n">gap</span><span class="p">[</span><span class="s1">'MLP'</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> % (MLP): el MLP sobreajusta menos. En robustez a ruido en la entrada (validación), con ruido de 2 desv. de los retornos la MASE sube de </span><span class="si">{</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">'CNN1D'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> a </span><span class="si">{</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">'CNN1D'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> (CNN1D, +</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">'CNN1D'</span><span class="p">]</span><span class="o">/</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">'CNN1D'</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> %), de </span><span class="si">{</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">'LSTM'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> a </span><span class="si">{</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">'LSTM'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> (LSTM, +</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">'LSTM'</span><span class="p">]</span><span class="o">/</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">'LSTM'</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> %) y de </span><span class="si">{</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">'MLP'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> a </span><span class="si">{</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">'MLP'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> (MLP, +</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="s1">'MLP'</span><span class="p">]</span><span class="o">/</span><span class="n">rb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="s1">'MLP'</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> %): **el modelo con mejor media de prueba es el más frágil**.</span>
+
+<span class="s1">### ¿Son las diferencias estadísticamente significativas y prácticamente relevantes?</span>
+<span class="s1">No, en la métrica primaria. Las diferencias observadas entre modelos (≈0.001–0.014 de MASE) son menores que δ (≈0.049 en la escala de prueba) y menores que la diferencia mínima detectable de los tres pares con 10 semillas (0.041–0.081; Cap. 6.4). TOST sí muestra equivalencia dentro de ±δ para MLP–LSTM y MLP–CNN1D, pero no para LSTM–CNN1D (la LSTM es la más variable entre semillas). La varianza entre semillas es la fuente dominante de variabilidad frente a la varianza entre modelos.</span>
+
+<span class="s1">### ¿Hay trade-off entre desempeño y costo?</span>
+<span class="s1">No se observa: el modelo con más parámetros (</span><span class="si">{</span><span class="n">runs</span><span class="p">[</span><span class="n">runs</span><span class="o">.</span><span class="n">model</span><span class="o">==</span><span class="s1">'CNN1D'</span><span class="p">]</span><span class="o">.</span><span class="n">n_params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">) es el mejor por poco; la LSTM tiene menos parámetros (</span><span class="si">{</span><span class="n">runs</span><span class="p">[</span><span class="n">runs</span><span class="o">.</span><span class="n">model</span><span class="o">==</span><span class="s1">'LSTM'</span><span class="p">]</span><span class="o">.</span><span class="n">n_params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">) pero es la más lenta de entrenar (</span><span class="si">{</span><span class="n">runs</span><span class="p">[</span><span class="n">runs</span><span class="o">.</span><span class="n">model</span><span class="o">==</span><span class="s1">'LSTM'</span><span class="p">]</span><span class="o">.</span><span class="n">train_time_s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> s frente a </span><span class="si">{</span><span class="n">runs</span><span class="p">[</span><span class="n">runs</span><span class="o">.</span><span class="n">model</span><span class="o">==</span><span class="s1">'MLP'</span><span class="p">]</span><span class="o">.</span><span class="n">train_time_s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> s del MLP) y no mejora. **Mayor complejidad no se traduce en mejor desempeño** en esta serie univariada.</span>
+
+<span class="s1">### Hallazgo central: los modelos de DL apenas mejoran las referencias simples</span>
+<span class="s1">- Frente a la **persistencia** (MASE </span><span class="si">{</span><span class="n">pers</span><span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">), la mejora de los tres modelos es de </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">pers</span><span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="o">-</span><span class="n">mm</span><span class="o">.</span><span class="n">max</span><span class="p">())</span><span class="o">/</span><span class="n">pers</span><span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> %–</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">pers</span><span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="o">-</span><span class="n">mm</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">/</span><span class="n">pers</span><span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> %, menor que δ = 3 %.</span>
+<span class="s1">- A **h=1**, </span><span class="si">{</span><span class="n">best</span><span class="si">}</span><span class="s1"> da MASE </span><span class="si">{</span><span class="n">h</span><span class="p">(</span><span class="n">best</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> frente a </span><span class="si">{</span><span class="n">pers</span><span class="p">[</span><span class="s1">'test_MASE_h1'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> de la persistencia (mejora clara), pero a **h=12** da </span><span class="si">{</span><span class="n">h</span><span class="p">(</span><span class="n">best</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> frente a </span><span class="si">{</span><span class="n">pers</span><span class="p">[</span><span class="s1">'test_MASE_h12'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> (**peor** que la persistencia).</span>
+<span class="s1">- La regresión **Ridge lineal** (MASE </span><span class="si">{</span><span class="n">rid</span><span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">) es **mejor que los tres modelos de DL**, y a h=1 (</span><span class="si">{</span><span class="n">rid</span><span class="p">[</span><span class="s1">'test_MASE_h1'</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">) también supera a la CNN 1D (</span><span class="si">{</span><span class="n">h</span><span class="p">(</span><span class="n">best</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">). Es un resultado coherente con la literatura que cuestiona la ganancia de modelos complejos sobre modelos simples en pronóstico, aunque aquí es una observación sobre un solo dataset.</span>
+
+<span class="s1">### Residuos: margen de mejora estructural</span>
+<span class="s1">Los residuos a h=1 de la CNN 1D presentan autocorrelación (Ljung–Box p ≤ 0.004 en los rezagos 5, 10 y 20), dependencia no lineal (BDS, p &lt; 0.002) y no normalidad marcada (Shapiro–Wilk p ≈ 1e-14). Queda estructura sin explicar, lo que sugiere margen para modelos que incorporen información adicional (covariables, texto) o heterocedasticidad.</span>
+
+<span class="s1">### Umbral y margen de mejora disponible</span>
+<span class="s1">Para considerarse una mejora **estadísticamente distinguible y prácticamente relevante**, un modelo avanzado debería lograr en la prueba una MASE₁:₁₂ ≲ **1.56** (≈ 3.5 % por debajo del baseline), que es el más exigente entre δ = 3 % y la mejora mínima detectable con 10 semillas. Dado que Ridge ya está en </span><span class="si">{</span><span class="n">rid</span><span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, **el umbral realista es superar también a Ridge**. La brecha reportada en la literatura entre modelos avanzados y modelos base (reducciones de MSE de 15–40 % en Time-MMD al añadir texto, según los trabajos revisados) **no es verificable con estos resultados** y debe contrastarse con la comparación del E2.'''</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<h3 class="rubric" id="cual-modelo-base-funciona-mejor-y-por-que">¿Cuál modelo base funciona mejor y por qué?</h3>
+<p><strong>CNN1D</strong> tiene la menor MASE₁:₁₂ de prueba (1.618; MLP 1.632, LSTM 1.632), pero la diferencia con los otros es de 0.8 % y <strong>no es estadísticamente significativa</strong> (p-valor t pareado más pequeño tras Holm = 0.99; Friedman p = 0.30). A horizonte h=1 el DM-HLN sí favorece a la CNN 1D frente al MLP (p ajustado ≈ 0.012); a h=4 y h=12 no hay diferencias. Una lectura plausible (a verificar) es que, a un paso, la CNN capta mejor los últimos retornos (autocorrelación corta, rezagos 1–3 significativos en el EDA), mientras que a 12 semanas todos convergen a un pronóstico cercano a la persistencia.</p>
+<h3 class="rubric" id="cual-generaliza-mejor">¿Cuál generaliza mejor?</h3>
+<p>La brecha entrenamiento→validación es 11.1 % (CNN1D), 9.7 % (LSTM) y 6.5 % (MLP): el MLP sobreajusta menos. En robustez a ruido en la entrada (validación), con ruido de 2 desv. de los retornos la MASE sube de 0.974 a 1.221 (CNN1D, +25 %), de 0.977 a 1.099 (LSTM, +12 %) y de 0.979 a 1.041 (MLP, +6 %): <strong>el modelo con mejor media de prueba es el más frágil</strong>.</p>
+<h3 class="rubric" id="son-las-diferencias-estadisticamente-significativas-y-practicamente-relevantes">¿Son las diferencias estadísticamente significativas y prácticamente relevantes?</h3>
+<p>No, en la métrica primaria. Las diferencias observadas entre modelos (≈0.001–0.014 de MASE) son menores que δ (≈0.049 en la escala de prueba) y menores que la diferencia mínima detectable de los tres pares con 10 semillas (0.041–0.081; Cap. 6.4). TOST sí muestra equivalencia dentro de ±δ para MLP–LSTM y MLP–CNN1D, pero no para LSTM–CNN1D (la LSTM es la más variable entre semillas). La varianza entre semillas es la fuente dominante de variabilidad frente a la varianza entre modelos.</p>
+<h3 class="rubric" id="hay-trade-off-entre-desempeno-y-costo">¿Hay trade-off entre desempeño y costo?</h3>
+<p>No se observa: el modelo con más parámetros (10,124) es el mejor por poco; la LSTM tiene menos parámetros (1,420) pero es la más lenta de entrenar (5.9 s frente a 0.9 s del MLP) y no mejora. <strong>Mayor complejidad no se traduce en mejor desempeño</strong> en esta serie univariada.</p>
+<h3 class="rubric" id="hallazgo-central-los-modelos-de-dl-apenas-mejoran-las-referencias-simples">Hallazgo central: los modelos de DL apenas mejoran las referencias simples</h3>
+<ul class="simple">
+<li><p>Frente a la <strong>persistencia</strong> (MASE 1.636), la mejora de los tres modelos es de 0.2 %–1.0 %, menor que δ = 3 %.</p></li>
+<li><p>A <strong>h=1</strong>, CNN1D da MASE 1.343 frente a 1.589 de la persistencia (mejora clara), pero a <strong>h=12</strong> da 1.814 frente a 1.711 (<strong>peor</strong> que la persistencia).</p></li>
+<li><p>La regresión <strong>Ridge lineal</strong> (MASE 1.579) es <strong>mejor que los tres modelos de DL</strong>, y a h=1 (1.258) también supera a la CNN 1D (1.343). Es un resultado coherente con la literatura que cuestiona la ganancia de modelos complejos sobre modelos simples en pronóstico, aunque aquí es una observación sobre un solo dataset.</p></li>
+</ul>
+<h3 class="rubric" id="residuos-margen-de-mejora-estructural">Residuos: margen de mejora estructural</h3>
+<p>Los residuos a h=1 de la CNN 1D presentan autocorrelación (Ljung–Box p ≤ 0.004 en los rezagos 5, 10 y 20), dependencia no lineal (BDS, p &lt; 0.002) y no normalidad marcada (Shapiro–Wilk p ≈ 1e-14). Queda estructura sin explicar, lo que sugiere margen para modelos que incorporen información adicional (covariables, texto) o heterocedasticidad.</p>
+<h3 class="rubric" id="umbral-y-margen-de-mejora-disponible">Umbral y margen de mejora disponible</h3>
+<p>Para considerarse una mejora <strong>estadísticamente distinguible y prácticamente relevante</strong>, un modelo avanzado debería lograr en la prueba una MASE₁:₁₂ ≲ <strong>1.56</strong> (≈ 3.5 % por debajo del baseline), que es el más exigente entre δ = 3 % y la mejora mínima detectable con 10 semillas. Dado que Ridge ya está en 1.579, <strong>el umbral realista es superar también a Ridge</strong>. La brecha reportada en la literatura entre modelos avanzados y modelos base (reducciones de MSE de 15–40 % en Time-MMD al añadir texto, según los trabajos revisados) <strong>no es verificable con estos resultados</strong> y debe contrastarse con la comparación del E2.</p>
+</div>
+</div>
+<section id="amenazas-a-la-validez">
+<h2>Amenazas a la validez<a class="headerlink" href="#amenazas-a-la-validez" title="Link to this heading">#</a></h2>
+<p><strong>Internas</strong></p>
+<ul class="simple">
+<li><p>La búsqueda de hiperparámetros usó <strong>una sola semilla</strong> por configuración (igual presupuesto para los tres modelos); parte de la ventaja aparente en la búsqueda es ruido de semilla.</p></li>
+<li><p>El «mejor modelo base» se elige por la media de prueba, como pide el enunciado, aunque la diferencia entre modelos está dentro del ruido; por eso el baseline debe leerse como <strong>la familia de los tres modelos</strong> (≈1.62–1.63), no como un ganador claro.</p></li>
+<li><p>Las pruebas DM se aplican sobre pronósticos promediados entre semillas; las ventanas de prueba se solapan y sus errores son autocorrelacionados (se corrige con HLN, pero la potencia es limitada).</p></li>
+<li><p>Una única partición cronológica; el diseño no cuantifica la variabilidad por partición.</p></li>
+</ul>
+<p><strong>Externas</strong></p>
+<ul class="simple">
+<li><p>Un solo dataset y una sola serie; el periodo de prueba incluye regímenes extremos (2020, 2022) que no están en el entrenamiento (termina en 2014).</p></li>
+<li><p>La <strong>MASE usa como escala el error del ingenuo en entrenamiento (en USD)</strong>; en la prueba, con precios más altos, los errores en USD crecen. El MAE sube con el nivel del precio (cuartil bajo ≈ 0.165 frente a cuartil alto ≈ 0.296 USD), mientras que el error relativo a precio se mantiene en 5.6–7.3 % en los cuatro cuartiles. Esto explica en buena medida que la MASE de prueba (≈1.6) sea mucho mayor que la de validación (≈0.97) sin que el modelo «empeore» en términos relativos. <strong>La MASE es comparable entre modelos dentro de una partición, no entre particiones.</strong></p></li>
+</ul>
+<p><strong>De construcción</strong></p>
+<ul class="simple">
+<li><p>MASE₁:₁₂ promedia horizontes de dificultad distinta; RMSE es sensible a colas pesadas; sMAPE tiene problemas cerca de cero (no ocurre aquí, precios &gt; 0.9).</p></li>
+</ul>
+</section>
+<section id="limitaciones">
+<h2>Limitaciones<a class="headerlink" href="#limitaciones" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>La revisión de literatura es preliminar (Cap. 3): faltan cadenas de búsqueda, IEEE Xplore, texto completo y tabla de síntesis verificada.</p></li>
+<li><p>Baselines solo con la serie; no se evalúa texto ni covariables.</p></li>
+<li><p>Ventana L = 26 no cubre un ciclo anual completo.</p></li>
+</ul>
+</section>
+<section id="recomendaciones-para-e2-y-e3">
+<h2>Recomendaciones para E2 y E3<a class="headerlink" href="#recomendaciones-para-e2-y-e3" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Incluir <strong>Ridge/AR</strong> y <strong>persistencia</strong> como referencias obligatorias del benchmark; un modelo que no supere a Ridge no justifica su complejidad.</p></li>
+<li><p>Evaluar una escala de error <strong>independiente del nivel</strong> (p. ej., MASE con escala móvil, error porcentual o log-retornos) además de la MASE actual.</p></li>
+<li><p>Probar L = 52 como variante y covariables causales; luego añadir texto con auditoría de fuga (campo <code class="docutils literal notranslate"><span class="pre">preds</span></code>).</p></li>
+<li><p>Aumentar la potencia: más semillas y validación con origen móvil para obtener varias realizaciones de régimen.</p></li>
+<li><p>Evaluar en los tres datasets adicionales de naturaleza distinta exigidos en el E3, fijados antes de ver resultados.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_benchmark_baseline.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">6. Benchmark de los modelos base, definición del baseline e inferencia</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_reproducibilidad.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">8. Reproducibilidad</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amenazas-a-la-validez">Amenazas a la validez</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">Limitaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-para-e2-y-e3">Recomendaciones para E2 y E3</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Fabian José Manrique Morelos
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
